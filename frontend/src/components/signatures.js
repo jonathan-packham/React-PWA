@@ -17,7 +17,6 @@ const Signatures = ({prevStep, SaveAndExit, handleChange, values}) => {
     e.preventDefault();
     let signature = getComponent(document.getElementById('signature'), 'signature');
     values.signature = signature.save('jpg', 'Signature');
-    setImagePath(values.signature);
     uploadSign();
   }
 
@@ -31,17 +30,6 @@ const Signatures = ({prevStep, SaveAndExit, handleChange, values}) => {
     SaveAndExit(e);
   }
 
-  function setImagePath(e) {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0])
-
-    reader.onload = () => {
-      this.setState({
-        queryImage: reader.result
-      }, () => this.postIdentification())
-    }
-  }
-
   async function uploadSign() {
       await fetch("http://localhost:3000/backend/uploadSign.php", {
         method: 'POST',
@@ -49,7 +37,7 @@ const Signatures = ({prevStep, SaveAndExit, handleChange, values}) => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.state.queryimage)
+        body: JSON.stringify(values.employeeID, values.formVersionNum, values.signature)
       }).then(res => res.json()).then(data => {
         if (data.ok) {
           console.log('Success', data);

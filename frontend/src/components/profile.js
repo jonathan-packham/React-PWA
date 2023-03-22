@@ -7,6 +7,12 @@ import artechlogoH from '../assets/artechlogoHorizontal.jpg';
 
 export default function Profile() {
     const [user, setUser] = useState([]);
+    const [loginStatus, setLoginStatus] = useState(false);
+
+    const checkLoginStatus = () => {
+        setLoginStatus(Cookies.get('loggedIn'));
+        return loginStatus;
+    }
 
     async function getUser() {
         try {
@@ -15,7 +21,7 @@ export default function Profile() {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: Cookies.get('loggedIn'),
+                    Authorization: loginStatus,
                 },
             }).then((response) => {
                 if (response.ok) {
@@ -30,6 +36,7 @@ export default function Profile() {
     }
 
     useEffect(() => {
+        checkLoginStatus
         getUser()
     }, [getUser])
 

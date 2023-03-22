@@ -6,6 +6,7 @@
     "proxy": "http://localhost:3000",
     "dependencies": {
         "@syncfusion/ej2-base": "^20.4.51",
+        "@syncfusion/ej2-react-dropdowns": "^20.4.54",
         "@syncfusion/ej2-react-inputs": "^20.4.54",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",

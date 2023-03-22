@@ -2,7 +2,7 @@
 //require configuration file for connection to database
 require './config.php';
 
-// check session for loggin status
+// check session for login status
 if (!$_SESSION["loggedIn"]) {
     return false;
 }
@@ -19,7 +19,7 @@ if (isset($data) && !empty($data)) {
     $decodedData = json_decode($data, true);
 
     // Set variables
-    $access = $decodedData['Access/']; 
+    $access = $decodedData['Access/Exit']; 
     $airborne = $decodedData['Airborne_Particles'];
     $barricade = $decodedData['BarricadeFlag_Area'];
     $blind = $decodedData['BlindedBlankedDisconnected'];

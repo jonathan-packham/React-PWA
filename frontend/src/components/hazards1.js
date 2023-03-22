@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {DropDownListComponent} from '@syncfusion/ej2-react-dropdowns';
 import './Components.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import squareLogo from '../assets/squareLogo.jpg';
@@ -35,6 +36,10 @@ const Hazards1 = ({SaveAndExit, nextStep, handleChange, values}) => {
     }
   }
 
+  useEffect(() => {
+    getJobs()
+  }, [getJobs])
+
   return (
     <div className='Hazard-form-container'>
       <form className='Hazard-form'>
@@ -46,14 +51,7 @@ const Hazards1 = ({SaveAndExit, nextStep, handleChange, values}) => {
                 Employee ID: {values.employeeID}
               </div>
               <div className='row border rounded mt-2 Hazard-form-text-display'>
-                <div className='dropdown'>
-                  <button className='dropdown-toggle' type='button' data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    Job ID:
-                  </button>
-                  <ul className='dropdown-menu'>
-                    <li><button className='dropdown-item' onClick=''></button></li>
-                  </ul>
-                </div>
+                <DropDownListComponent id="ddelement" dataSource={jobIDs} placeholder="Select Job: " />
               </div>
               <div className='row border rounded mt-2 Hazard-form-text-display'>
                 Date: {values.date}
