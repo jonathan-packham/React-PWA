@@ -9,7 +9,7 @@ import Signatures from './signatures';
 
 export default class HazardForm extends Component {
     state = {
-        formVersionNum: this.getPermitNum,
+        formVersionNum: 1,
         step: 1,
         jobID: 1,
         employeeID: 1,
@@ -117,24 +117,6 @@ export default class HazardForm extends Component {
             formVersionNum: this.state.formVersionNum + 1,
         });
         return redirect('/forms');
-    }
-
-    async getFormID() {
-        try {
-            await fetch("http://localhost:3000/backend/getPermitID.php", {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            }).then((response) => {
-                if (response.ok) {
-                    return JSON.parse(response)
-                }
-            })
-        } catch (error) {
-            console.log(error.message)
-        }
     }
 
     async uploadData() {

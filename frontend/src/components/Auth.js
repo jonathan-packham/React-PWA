@@ -7,6 +7,7 @@ import '../App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
  //importing logo
 import artechlogoH from '../assets/artechlogoHorizontal.jpg';
+// 🥲🥸
 
 export default function Login() {
     const [user, setUser] = useState('');
@@ -78,6 +79,7 @@ export default function Login() {
             return redirect('/deactive')
         }
         if (user === fetchedData['Username'] && pass === fetchedData['User_Password']) {
+            Cookies.set('User', user)
             return redirect('/home')
         } else if (user !== fetchedData['Username'] && pass === fetchedData['User_Password']) {
             setUserValid("form-control mt-1 is-invalid")
